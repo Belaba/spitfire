@@ -2356,7 +2356,8 @@ defmodule Spitfire do
   end
 
   defp valid_peek?(_ctype, ptype) do
-    ptype in (@operators ++ [:";", :eol, :eof, :",", :")", :do, :., :"}", :"]", :">>", :end])
+    ptype in (@operators ++ [:";", :eol, :eof, :",", :")", :do, :., :"}", :"]", :">>", :end, :block_identifier])
+#	ptype in (@operators ++ [:";", :eol, :eof, :",", :")", :do, :., :"}", :"]", :">>", :end])
   end
 
   defp remove_depth_meta(ast) do

@@ -4,6 +4,19 @@ defmodule SpitfireTest do
   doctest Spitfire
 
   describe "valid code" do
+
+	test "single line if else" do
+	  code = "if foo() do :bar else :baz end"
+
+	  assert Spitfire.parse(code) == s2q(code)
+	end
+
+	test "Nested single line if else" do
+	  code = "if foo() do if bar() do :foobar else :barbar end else if baz() do :foobaz else :bazbaz end end"
+
+	  assert Spitfire.parse(code) == s2q(code)
+	end
+
     test "parses valid elixir" do
       code = """
       defmodule Foo do
@@ -11,7 +24,7 @@ defmodule SpitfireTest do
           some: :option
 
         def run(arg) do
-          bar() 
+          bar()
           :ok
         end
       end
